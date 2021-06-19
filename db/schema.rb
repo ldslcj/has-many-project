@@ -10,17 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_19_022850) do
+ActiveRecord::Schema.define(version: 2021_06_19_033916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "books", force: :cascade do |t|
     t.string "name"
-    t.bigint "section_id", null: false
+    t.string "author"
+    t.bigint "library_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["section_id"], name: "index_books_on_section_id"
+    t.index ["library_id"], name: "index_books_on_library_id"
   end
 
   create_table "libraries", force: :cascade do |t|
@@ -30,14 +31,5 @@ ActiveRecord::Schema.define(version: 2021_06_19_022850) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "sections", force: :cascade do |t|
-    t.string "name"
-    t.bigint "library_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["library_id"], name: "index_sections_on_library_id"
-  end
-
-  add_foreign_key "books", "sections"
-  add_foreign_key "sections", "libraries"
+  add_foreign_key "books", "libraries"
 end

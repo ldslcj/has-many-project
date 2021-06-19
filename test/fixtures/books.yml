@@ -2,8 +2,10 @@
 
 one:
   name: MyString
-  section: one
+  author: MyString
+  library: one
 
 two:
   name: MyString
-  section: two
+  author: MyString
+  library: two
